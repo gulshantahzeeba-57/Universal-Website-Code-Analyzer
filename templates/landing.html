@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ScanForge | Diagnostics for Websites & Codebases</title>
+    <meta name="description" content="ScanForge scans live websites and uploaded codebases, then hands you a prioritized, plain-language fix list — SEO, performance, security and code quality in one pass.">
+
+    <link rel="icon" type="image/svg+xml"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='24' fill='%2316f0c4'/><path d='M18 55 L36 55 L44 33 L58 70 L66 45 L82 45' stroke='%230b1a16' stroke-width='8' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/landing.css') }}">
+</head>
+
+<body class="lp">
+
+    <!-- ===== NAV ===== -->
+    <nav class="lp-nav">
+        <div class="wrap">
+            <a href="#top" class="lp-brand">
+                <span class="lp-brand-mark">&lt;/&gt;</span>
+                ScanForge
+            </a>
+
+            <div class="lp-links">
+                <a href="#features">Features</a>
+                <a href="#how-it-works">How it works</a>
+                <a href="#sample-report">Sample report</a>
+                <a href="#pricing">Pricing</a>
+            </div>
+
+            <div class="lp-nav-actions">
+                <a class="lp-btn lp-btn-ghost" id="nav-signin" href="{{ url_for('login_page') }}?tab=login">Sign in</a>
+                <a class="lp-btn lp-btn-signal" id="nav-signup" href="{{ url_for('login_page') }}?tab=signup">Create free account</a>
+                <button class="lp-menu-toggle" onclick="toggleMobileNav()" aria-label="Menu">☰</button>
+            </div>
+        </div>
+    </nav>
+
+    <div id="top"></div>
+    <div class="lp-grid-bg"></div>
+
+    <!-- ===== HERO ===== -->
+    <header class="lp-hero">
+        <div class="wrap lp-hero-inner">
+            <span class="eyebrow">Live diagnostics engine</span>
+            <h1>Find out what's actually<br>wrong with your <span class="accent">site &amp; code</span></h1>
+            <p class="lede">
+                Drop in a URL or a project ZIP. ScanForge runs it through the same checks a senior
+                reviewer would — SEO, performance, security and code quality — and hands back a
+                prioritized list of what to fix first.
+            </p>
+
+            <div class="lp-hero-ctas">
+                <a class="lp-btn lp-btn-signal lp-btn-lg" href="{{ url_for('login_page') }}?tab=signup">
+                    Run a free scan
+                </a>
+                <a href="#sample-report" class="lp-btn lp-btn-outline lp-btn-lg">
+                    See a sample report
+                </a>
+            </div>
+            <p class="lp-hero-note">no credit card &middot; results in under 10 seconds</p>
+
+            <!-- signature element: live scan monitor -->
+            <div class="lp-monitor" role="img" aria-label="Preview of a ScanForge scan in progress">
+                <div class="lp-monitor-bar">
+                    <div class="lp-monitor-dots"><span></span><span></span><span></span></div>
+                    <div class="lp-monitor-target">scanning <span id="monitor-target">github.com/acme/storefront</span><span class="cursor"></span></div>
+                    <div class="lp-monitor-live"><span class="dot"></span>LIVE</div>
+                </div>
+                <div class="lp-monitor-body">
+                    <div class="lp-monitor-scan">
+                        <div class="lp-scan-track">
+                            <div class="lp-scan-wave">
+                                <i style="--d:0.1; height:40%"></i>
+                                <i style="--d:0.3; height:70%"></i>
+                                <i style="--d:0.05; height:30%"></i>
+                                <i style="--d:0.5; height:85%"></i>
+                                <i style="--d:0.2; height:50%"></i>
+                                <i style="--d:0.4; height:65%"></i>
+                                <i style="--d:0.15; height:35%"></i>
+                                <i style="--d:0.35; height:75%"></i>
+                                <i style="--d:0.25; height:45%"></i>
+                                <i style="--d:0.45; height:90%"></i>
+                                <i style="--d:0.1; height:40%"></i>
+                                <i style="--d:0.3; height:60%"></i>
+                                <i style="--d:0.2; height:55%"></i>
+                                <i style="--d:0.4; height:70%"></i>
+                                <i style="--d:0.05; height:30%"></i>
+                                <i style="--d:0.5; height:80%"></i>
+                            </div>
+                        </div>
+                        <div class="lp-scan-rows">
+                            <div class="lp-scan-row">
+                                <span class="tag">seo</span>
+                                <span class="bar"><i style="width:91%; background:var(--teal)"></i></span>
+                                <span class="val">91</span>
+                            </div>
+                            <div class="lp-scan-row">
+                                <span class="tag">perf</span>
+                                <span class="bar"><i style="width:78%; background:var(--violet)"></i></span>
+                                <span class="val">78</span>
+                            </div>
+                            <div class="lp-scan-row">
+                                <span class="tag">security</span>
+                                <span class="bar"><i style="width:64%; background:var(--amber)"></i></span>
+                                <span class="val">64</span>
+                            </div>
+                            <div class="lp-scan-row">
+                                <span class="tag">a11y</span>
+                                <span class="bar"><i style="width:88%; background:var(--green)"></i></span>
+                                <span class="val">88</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="lp-monitor-report">
+                        <div class="lp-report-head">
+                            <h3>Priority findings</h3>
+                            <span class="lp-report-score">80 / 100</span>
+                        </div>
+                        <div class="lp-report-item err">
+                            <span class="ic">✕</span>
+                            <span><b>Missing CSP header</b> — reflected content could be injected on 3 routes.</span>
+                        </div>
+                        <div class="lp-report-item warn">
+                            <span class="ic">!</span>
+                            <span><b>Largest Contentful Paint 3.8s</b> — hero image isn't served in a modern format.</span>
+                        </div>
+                        <div class="lp-report-item warn">
+                            <span class="ic">!</span>
+                            <span><b>12 components missing alt text</b> — affects screen-reader users on /catalog.</span>
+                        </div>
+                        <div class="lp-report-item ok">
+                            <span class="ic">✓</span>
+                            <span><b>Meta &amp; structured data</b> — complete on all indexed pages.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ===== STATS ===== -->
+    <section class="lp-stats">
+        <div class="wrap">
+            <div class="lp-stat">
+                <div class="num">40<span class="unit">+</span></div>
+                <div class="label">checks per scan</div>
+            </div>
+            <div class="lp-stat">
+                <div class="num">&lt;10<span class="unit">s</span></div>
+                <div class="label">median scan time</div>
+            </div>
+            <div class="lp-stat">
+                <div class="num">2<span class="unit">-in-1</span></div>
+                <div class="label">live URL + ZIP upload</div>
+            </div>
+            <div class="lp-stat">
+                <div class="num">0<span class="unit">$</span></div>
+                <div class="label">to run your first audit</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FEATURES ===== -->
+    <section class="lp-section" id="features">
+        <div class="wrap">
+            <div class="lp-section-head">
+                <span class="eyebrow">What it checks</span>
+                <h2>One scan, four disciplines</h2>
+                <p>ScanForge doesn't just lint your code or ping your homepage — it reasons about the
+                    project the way a reviewer covering SEO, performance, security and code quality
+                    together would.</p>
+            </div>
+
+            <div class="lp-features">
+                <div class="lp-feature">
+                    <div class="fi">◎</div>
+                    <h3>Live URL scans</h3>
+                    <p>Paste any public URL. ScanForge fetches the live page, reads its markup and
+                        content, and grades it in place.</p>
+                </div>
+                <div class="lp-feature">
+                    <div class="fi">▦</div>
+                    <h3>Codebase audits</h3>
+                    <p>Upload a project as a .zip. Structure, tech stack, styling and scripts get
+                        reviewed without you setting up anything locally.</p>
+                </div>
+                <div class="lp-feature">
+                    <div class="fi">▲</div>
+                    <h3>Risk-ranked findings</h3>
+                    <p>Every result lands in Passed, Warning or Critical — so you fix what actually
+                        matters before what's merely cosmetic.</p>
+                </div>
+                <div class="lp-feature">
+                    <div class="fi">↺</div>
+                    <h3>Scan history</h3>
+                    <p>Every audit is logged with its score and timestamp, so you can track whether a
+                        site or repo is actually improving.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== HOW IT WORKS ===== -->
+    <section class="lp-section lp-section-tight" id="how-it-works">
+        <div class="wrap">
+            <div class="lp-section-head center">
+                <span class="eyebrow">The process</span>
+                <h2>From link to fix list in three steps</h2>
+            </div>
+
+            <div class="lp-steps">
+                <div class="lp-step">
+                    <div class="n">01</div>
+                    <h3>Point it at something</h3>
+                    <p>A live URL or a .zip export of your project — ScanForge accepts either as the
+                        starting point.</p>
+                </div>
+                <div class="lp-step">
+                    <div class="n">02</div>
+                    <h3>It reads before it scores</h3>
+                    <p>Markup, content, file structure and stack are parsed first, then evaluated
+                        against SEO, performance, security and quality checks.</p>
+                </div>
+                <div class="lp-step">
+                    <div class="n">03</div>
+                    <h3>Get a ranked report</h3>
+                    <p>Passed checks, warnings and critical risks, sorted by what would hurt users or
+                        rankings the most.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== SAMPLE REPORT (diff-style) ===== -->
+    <section class="lp-section" id="sample-report">
+        <div class="wrap">
+            <div class="lp-section-head">
+                <span class="eyebrow">Sample output</span>
+                <h2>Findings read like a code review, not a spreadsheet</h2>
+                <p>Each line names exactly what's wrong and where — so a fix is a task, not a
+                    treasure hunt.</p>
+            </div>
+
+            <div class="lp-diff">
+                <div class="lp-diff-head">
+                    <span>audit_report — checkout/page.tsx</span>
+                    <span>3 warnings · 1 critical</span>
+                </div>
+                <div class="lp-diff-body">
+                    <div class="lp-diff-line dim">// security</div>
+                    <div class="lp-diff-line rm">✕ inline &lt;script&gt; blocks bypass your CSP policy</div>
+                    <div class="lp-diff-line dim">// performance</div>
+                    <div class="lp-diff-line rm">! hero.png (2.4MB) served without compression</div>
+                    <div class="lp-diff-line add">✓ swap to hero.webp, add loading="lazy"</div>
+                    <div class="lp-diff-line dim">// seo</div>
+                    <div class="lp-diff-line rm">! missing meta description on /checkout</div>
+                    <div class="lp-diff-line add">✓ 155-character description generated for review</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== PRICING ===== -->
+    <section class="lp-section" id="pricing">
+        <div class="wrap">
+            <div class="lp-section-head center">
+                <span class="eyebrow">Pricing</span>
+                <h2>Start free, upgrade when you're scanning daily</h2>
+            </div>
+
+            <div class="lp-pricing">
+                <div class="lp-plan">
+                    <div class="pname">Developer</div>
+                    <div class="pdesc">For side projects and one-off audits</div>
+                    <div class="pprice">$0<span>/mo</span></div>
+                    <ul>
+                        <li>5 scans per day</li>
+                        <li>Live URL + ZIP upload</li>
+                        <li>7-day scan history</li>
+                    </ul>
+                    <a class="lp-btn lp-btn-ghost lp-btn-block" href="{{ url_for('login_page') }}?tab=signup">Get started</a>
+                </div>
+                <div class="lp-plan featured">
+                    <div class="pname">Team</div>
+                    <div class="pdesc">For shipping products with a real backlog</div>
+                    <div class="pprice">$19<span>/mo</span></div>
+                    <ul>
+                        <li>Unlimited scans</li>
+                        <li>Full scan history &amp; exports</li>
+                        <li>Shared team dashboard</li>
+                        <li>Priority scan queue</li>
+                    </ul>
+                    <a class="lp-btn lp-btn-signal lp-btn-block" href="{{ url_for('login_page') }}?tab=signup">Start free trial</a>
+                </div>
+                <div class="lp-plan">
+                    <div class="pname">Agency</div>
+                    <div class="pdesc">For auditing client sites at scale</div>
+                    <div class="pprice">$49<span>/mo</span></div>
+                    <ul>
+                        <li>Everything in Team</li>
+                        <li>White-labeled reports</li>
+                        <li>Multiple workspaces</li>
+                    </ul>
+                    <a class="lp-btn lp-btn-ghost lp-btn-block" href="{{ url_for('login_page') }}?tab=signup">Contact sales</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FINAL CTA ===== -->
+    <section class="lp-section" style="padding-top:0;">
+        <div class="wrap">
+            <div class="lp-cta">
+                <h2>Point it at your site. See what it finds.</h2>
+                <p>Free to try, no setup beyond a URL or a .zip file.</p>
+                <div class="lp-cta-ctas">
+                    <a class="lp-btn lp-btn-signal lp-btn-lg" href="{{ url_for('login_page') }}?tab=signup">Create free account</a>
+                    <a class="lp-btn lp-btn-outline lp-btn-lg" href="{{ url_for('login_page') }}?tab=login">I already have an account</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="lp-footer">
+        <div class="wrap">
+            <div class="lp-footer-brand">
+                <span class="lp-brand-mark" style="width:26px;height:26px;font-size:11px;">&lt;/&gt;</span>
+                ScanForge
+            </div>
+            <div class="lp-footer-links">
+                <a href="#features">Features</a>
+                <a href="#how-it-works">How it works</a>
+                <a href="#pricing">Pricing</a>
+                <a href="{{ url_for('dashboard') }}">Audit console</a>
+            </div>
+            <div class="lp-footer-copy">© 2026 ScanForge. Built as a demo project.</div>
+        </div>
+    </footer>
+
+    <script>const DASHBOARD_URL = "{{ url_for('dashboard') }}";</script>
+    <script src="{{ url_for('static', filename='js/landing.js') }}"></script>
+</body>
+
+</html>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign in | ScanForge</title>
+    <meta name="description" content="Sign in or create a free ScanForge account to save your scan history and track scores over time.">
+
+    <link rel="icon" type="image/svg+xml"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='24' fill='%2316f0c4'/><path d='M18 55 L36 55 L44 33 L58 70 L66 45 L82 45' stroke='%230b1a16' stroke-width='8' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/landing.css') }}">
+</head>
+
+<body class="lp">
+    <div class="auth-page">
+
+        <!-- ===== LEFT: brand & benefits ===== -->
+        <div class="auth-side">
+            <div class="lp-grid-bg"></div>
+            <a href="{{ url_for('landing') }}" class="lp-brand" style="position:relative; z-index:1;">
+                <span class="lp-brand-mark">&lt;/&gt;</span>
+                ScanForge
+            </a>
+
+            <div class="auth-side-body">
+                <span class="eyebrow">Your account</span>
+                <h1>Every scan,<br>saved and tracked</h1>
+                <p>
+                    Create a free account to keep a running log of every site and codebase
+                    you've audited — and see at a glance whether the score is climbing.
+                </p>
+
+                <ul class="auth-benefits">
+                    <li><span class="ic">✓</span> Unlimited scan history, searchable by target</li>
+                    <li><span class="ic">✓</span> Score trend for every URL or repo you track</li>
+                    <li><span class="ic">✓</span> One click to reopen any past report</li>
+                </ul>
+
+                <div class="auth-mini-monitor">
+                    <div class="lp-scan-rows">
+                        <div class="lp-scan-row">
+                            <span class="tag">seo</span>
+                            <span class="bar"><i style="width:91%; background:var(--teal)"></i></span>
+                            <span class="val">91</span>
+                        </div>
+                        <div class="lp-scan-row">
+                            <span class="tag">security</span>
+                            <span class="bar"><i style="width:64%; background:var(--amber)"></i></span>
+                            <span class="val">64</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== RIGHT: auth card ===== -->
+        <div class="auth-right">
+            <div class="auth-card">
+                <div class="lp-modal-tabs auth-tabs">
+                    <button class="lp-modal-tab" id="tab-login" onclick="switchAuthTab('login')">Sign In</button>
+                    <button class="lp-modal-tab" id="tab-signup" onclick="switchAuthTab('signup')">Sign Up</button>
+                </div>
+
+                <div id="auth-forms">
+                    <div id="form-login">
+                        <h2>Welcome back</h2>
+                        <p class="auth-sub">Sign in to see your scan history and saved reports.</p>
+
+                        <div class="auth-alert hidden" id="login-alert">
+                            <span id="login-alert-text"></span>
+                            <button type="button" onclick="goToTabWithEmail('signup')">Sign up</button>
+                        </div>
+
+                        <form onsubmit="return submitAuth(event, 'login')">
+                            <div class="lp-field">
+                                <label for="login-email">Email address</label>
+                                <input type="email" id="login-email" required placeholder="name@domain.com">
+                            </div>
+                            <div class="lp-field">
+                                <label for="login-pass">Password</label>
+                                <input type="password" id="login-pass" required minlength="6" placeholder="Minimum 6 characters">
+                            </div>
+                            <button class="lp-btn lp-btn-signal lp-btn-block lp-form-submit" type="submit">Sign In</button>
+                        </form>
+                    </div>
+
+                    <div id="form-signup" class="hidden">
+                        <h2>Create account</h2>
+                        <p class="auth-sub">Sign up for a free developer account today.</p>
+
+                        <div class="auth-alert hidden" id="signup-alert">
+                            <span id="signup-alert-text"></span>
+                            <button type="button" onclick="goToTabWithEmail('login')">Sign in</button>
+                        </div>
+
+                        <form onsubmit="return submitAuth(event, 'signup')">
+                            <div class="lp-field">
+                                <label for="signup-name">Full name</label>
+                                <input type="text" id="signup-name" required placeholder="Ada Lovelace">
+                            </div>
+                            <div class="lp-field">
+                                <label for="signup-email">Email address</label>
+                                <input type="email" id="signup-email" required placeholder="name@domain.com">
+                            </div>
+                            <div class="lp-field">
+                                <label for="signup-pass">Password</label>
+                                <input type="password" id="signup-pass" required minlength="6" placeholder="Minimum 6 characters">
+                            </div>
+                            <button class="lp-btn lp-btn-signal lp-btn-block lp-form-submit" type="submit">Create Account</button>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="auth-success hidden" id="auth-success">
+                    <div class="ok-ic">✓</div>
+                    <h3 id="auth-success-title">You're in</h3>
+                    <p id="auth-success-text">Taking you to your dashboard…</p>
+                </div>
+            </div>
+
+            <a href="{{ url_for('landing') }}" class="auth-back">← Back to Homepage</a>
+        </div>
+    </div>
+
+    <script>const DASHBOARD_URL = "{{ url_for('dashboard') }}";</script>
+    <script src="{{ url_for('static', filename='js/auth.js') }}"></script>
+</body>
+
+</html>
